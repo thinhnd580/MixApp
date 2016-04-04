@@ -19,6 +19,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.collectionView.backgroundColor=UIColor.clearColor();
         collectionView!.registerNib(UINib(nibName: "MuzikCell", bundle: nil), forCellWithReuseIdentifier: "MuzikCell")
     }
     
@@ -41,6 +42,11 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         cell.imgIcon.backgroundColor=UIColor.redColor();
         return cell
         
+    }
+    func collectionView(collectionView: UICollectionView,
+                          layout collectionViewLayout: UICollectionViewLayout,
+                                 sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+        return CGSize.init(width: ((self.view.frame.width/2) - 50), height: 200)
     }
     
 }

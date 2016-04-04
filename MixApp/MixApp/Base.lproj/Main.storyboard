@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Setting-->
         <scene sceneID="fa4-kd-gxS">
             <objects>
                 <viewController id="wYQ-0h-DoP" customClass="SettingViewController" customModule="MixApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,10 +36,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="wYQ-0h-DoP" id="H3b-qt-PRZ"/>
-                                    <outlet property="delegate" destination="wYQ-0h-DoP" id="76a-8I-QDQ"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,7 +46,7 @@
                             <constraint firstItem="pGQ-dW-A3Q" firstAttribute="top" secondItem="lwQ-6m-sx0" secondAttribute="top" id="nwl-uJ-jUp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="aE6-Qk-9ls"/>
+                    <tabBarItem key="tabBarItem" title="Setting" id="aE6-Qk-9ls"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGZ-cr-DKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
