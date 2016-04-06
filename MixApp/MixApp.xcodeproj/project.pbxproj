@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		257C1A211CB5426400D3B079 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 257C1A201CB5426400D3B079 /* rain.mp3 */; };
 		25ECF6021CB3E96B0002DB87 /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECF6011CB3E96B0002DB87 /* UIImageExt.swift */; };
 		B23054251CB215E600D0C389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23054241CB215E600D0C389 /* AppDelegate.swift */; };
 		B23054271CB215E600D0C389 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23054261CB215E600D0C389 /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		257C1A201CB5426400D3B079 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rain.mp3; path = Resource/sound/rain.mp3; sourceTree = "<group>"; };
 		25ECF6011CB3E96B0002DB87 /* UIImageExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExt.swift; path = extention/UIImageExt.swift; sourceTree = "<group>"; };
 		B23054211CB215E600D0C389 /* MixApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23054241CB215E600D0C389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,12 +200,13 @@
 				B25FB8D61CB4C5E400B2B10F /* forrest.mp3 */,
 				B25FB8D71CB4C5E400B2B10F /* leaves.mp3 */,
 				B25FB8D81CB4C5E400B2B10F /* moon.mp3 */,
+				257C1A201CB5426400D3B079 /* rain.mp3 */,
 				B25FB8D91CB4C5E400B2B10F /* seaside.mp3 */,
+				B25FB8CC1CB4A5AB00B2B10F /* thunderstorm.mp3 */,
 				B25FB8DA1CB4C5E400B2B10F /* train.mp3 */,
 				B25FB8DB1CB4C5E400B2B10F /* water.mp3 */,
 				B25FB8DC1CB4C5E400B2B10F /* waterstream.mp3 */,
 				B25FB8DD1CB4C5E400B2B10F /* wind.mp3 */,
-				B25FB8CC1CB4A5AB00B2B10F /* thunderstorm.mp3 */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				B25FB8C81CB4A5A200B2B10F /* thunderstorm.png in Resources */,
 				B25FB8C61CB4A5A200B2B10F /* rain.png in Resources */,
 				B25FB8CD1CB4A5AB00B2B10F /* thunderstorm.mp3 in Resources */,
+				257C1A211CB5426400D3B079 /* rain.mp3 in Resources */,
 				B25FB8DF1CB4C5E400B2B10F /* cafe.mp3 in Resources */,
 				B25FB8CB1CB4A5A200B2B10F /* waterstream.png in Resources */,
 				B25FB8C51CB4A5A200B2B10F /* PS_BG.png in Resources */,

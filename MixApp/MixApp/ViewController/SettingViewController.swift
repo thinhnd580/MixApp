@@ -11,7 +11,7 @@ import UIKit
 class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var category:[String] = ["About","Copy Right","More App"]
+    var category:[String] = ["About","Copyright","More App"]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "SettingCell")
@@ -35,12 +35,12 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell;
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("SettingPresent", sender: nil)
+        self.performSegueWithIdentifier("SettingPresent", sender: indexPath)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let VC = segue.destinationViewController !as
-//        VC.inde
+        let VC = segue.destinationViewController as! ViewController
+        VC.index = (sender as! NSIndexPath).row
         
     }
 

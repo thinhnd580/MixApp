@@ -13,7 +13,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnPlayStopAll: UIButton!
-    var filenames:[String] = ["audiowave","cafe","fan","fire","forrest","leaves","moon","waterstream","seaside","thunderstorm","train","water"]
+    var filenames:[String] = ["audiowave","cafe","fan","fire","forrest","leaves","moon","rain","seaside","thunderstorm","train","water","waterstream"]
     var players:[AVAudioPlayer] = []
     var btnArray:[UIButton] = []
     var sliderArray:[UISlider] = []
@@ -27,18 +27,6 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView.backgroundColor=UIColor.clearColor();
         collectionView!.registerNib(UINib(nibName: "MuzikCell", bundle: nil), forCellWithReuseIdentifier: "MuzikCell")
-        let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( "thunderstorm" , ofType:  ".mp3")! )
-        do{
-            let player = try AVAudioPlayer(contentsOfURL:url)
-            player.prepareToPlay()
-//            players.insert(player, atIndex: indexPath.row)
-            player.volume=100;
-            player.stop()
-            player.play()
-        }
-        catch{
-            print("Error");
-        }
         
         
     }
@@ -60,38 +48,49 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     
     //thinh 040416
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         //Define Cell for indexpath
         let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("MuzikCell", forIndexPath: indexPath) as! MuzikCell
-        
-        //Set Normal State
-        cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
-        
-        //Set Selected State
-        let bgSelected=UIImage.init(named: self.filenames[indexPath.row] + ".png")?.alpha(1)
-        cell.btnIcon.setBackgroundImage(bgSelected, forState: UIControlState.Selected)
-        
-        //catch event button click
-        cell.btnIcon.tag=indexPath.row;
-        cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.btnArray.insert(cell.btnIcon, atIndex: indexPath.row)
         
         //catch event slider editting
         cell.sliderVolume.tag=indexPath.row
         cell.sliderVolume.addTarget(self, action: #selector(IMuzikViewController.onSliderMoving(_:)), forControlEvents: UIControlEvents.TouchDragInside)
         self.sliderArray.insert(cell.sliderVolume, atIndex: indexPath.row)
         
-        let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( self.filenames[indexPath.row]  , ofType:  ".mp3")! )
-        do{
-            let player = try AVAudioPlayer(contentsOfURL:url)
-            
-            players.insert(player, atIndex: indexPath.row)
-            player.prepareToPlay()
-            player.play()
-            player.stop()
+        cell.btnIcon.tag=indexPath.row;
+        cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        if(self.players.count<self.filenames.count){
+            //First time create cell
+            cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
+            //create player for cell
+            let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( self.filenames[indexPath.row]  , ofType:  ".mp3")! )
+            do{
+                let player = try AVAudioPlayer(contentsOfURL:url)
+                    players.insert(player, atIndex: indexPath.row)
+                    //            player.numberOfLoops = -1
+                    player.prepareToPlay()
+                    player.play()
+                    player.stop()
+                
+                
+                
+            }
+            catch{
+                print("Error");
+            }
         }
-        catch{
-            print("Error");
+        else{
+            //change state of button
+            if((self.players[indexPath.row] ).playing){
+                let bgSelected=UIImage.init(named: self.filenames[indexPath.row] + ".png")?.alpha(1)
+                cell.btnIcon.setBackgroundImage(bgSelected, forState: UIControlState.Normal)
+            }
+            else{
+                cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
+                
+            }
+            
+
         }
         
         return cell
@@ -110,19 +109,23 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     
     //thinh 040416
     func soundClicked(sender:UIButton){
-        //change state of button
-        sender.selected = !sender.selected
+        //change to play/stop state
+
         print("clicked \(sender.tag)")
         
         //get player
         let player = players[sender.tag]
         
         if(player.playing){
+            sender.setBackgroundImage(UIImage.init(named: self.filenames[sender.tag] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
             player.stop()
         }
         else{
+            let bgSelected=UIImage.init(named: self.filenames[sender.tag] + ".png")?.alpha(1)
+            sender.setBackgroundImage(bgSelected, forState: UIControlState.Normal)
             player.play()
         }
+        
         
     }
     
@@ -135,25 +138,31 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         
         
         let count = self.filenames.count-1
+        
+        //change to playall
         if !self.btnPlayStopAll.selected {
             
             for index in 0...count{
                 print(index)
-                let btn = self.btnArray[index]
-                if(!btn.selected){
-                    self.soundClicked(btn)
+                let player = self.players[index]
+                if(!player.playing){
+                    player.play()
+                    self.collectionView.reloadItemsAtIndexPaths([NSIndexPath].init(arrayLiteral: NSIndexPath.init(forRow: index, inSection: 0)))
                 }
                 
                 
             }
 
         }
+            
+        //change to stop all
         else{
             for index in 0...count{
-                let btn = self.btnArray[index]
+                let player = self.players[index]
 //                cell.btnIcon.selected=false;
-                if(btn.selected){
-                    self.soundClicked(btn)
+                if(player.playing){
+                    player.stop()
+                    self.collectionView.reloadItemsAtIndexPaths([NSIndexPath].init(arrayLiteral: NSIndexPath.init(forRow: index, inSection: 0)))
                 }
             }
         }
@@ -168,5 +177,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         let player = players[sender.tag]
         player.volume = sender.value
     }
+    
+
     
 }

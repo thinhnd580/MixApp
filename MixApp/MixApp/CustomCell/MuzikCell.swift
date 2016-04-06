@@ -24,5 +24,9 @@ class MuzikCell: UICollectionViewCell {
     @IBAction func btnClicked(sender: AnyObject) {
         
     }
+    override func prepareForReuse() {
+        
+        self.btnIcon.setBackgroundImage(nil, forState: (UIControlState.Selected) ) ;
+    }
     
 }
