@@ -32,6 +32,8 @@
 		B25FB8CA1CB4A5A200B2B10F /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = B25FB8BC1CB4A5A200B2B10F /* water.png */; };
 		B25FB8CB1CB4A5A200B2B10F /* waterstream.png in Resources */ = {isa = PBXBuildFile; fileRef = B25FB8BD1CB4A5A200B2B10F /* waterstream.png */; };
 		B25FB8CD1CB4A5AB00B2B10F /* thunderstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B25FB8CC1CB4A5AB00B2B10F /* thunderstorm.mp3 */; };
+		B25FB8CF1CB4B9C600B2B10F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25FB8CE1CB4B9C600B2B10F /* AVFoundation.framework */; };
+		B25FB8D11CB4B9D700B2B10F /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25FB8D01CB4B9D700B2B10F /* AVKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		B25FB8BC1CB4A5A200B2B10F /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = water.png; path = Resource/image/water.png; sourceTree = "<group>"; };
 		B25FB8BD1CB4A5A200B2B10F /* waterstream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = waterstream.png; path = Resource/image/waterstream.png; sourceTree = "<group>"; };
 		B25FB8CC1CB4A5AB00B2B10F /* thunderstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = thunderstorm.mp3; path = Resource/sound/thunderstorm.mp3; sourceTree = "<group>"; };
+		B25FB8CE1CB4B9C600B2B10F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B25FB8D01CB4B9D700B2B10F /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25FB8D11CB4B9D700B2B10F /* AVKit.framework in Frameworks */,
+				B25FB8CF1CB4B9C600B2B10F /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +114,8 @@
 		B23054181CB215E600D0C389 = {
 			isa = PBXGroup;
 			children = (
+				B25FB8D01CB4B9D700B2B10F /* AVKit.framework */,
+				B25FB8CE1CB4B9C600B2B10F /* AVFoundation.framework */,
 				B23054231CB215E600D0C389 /* MixApp */,
 				B23054221CB215E600D0C389 /* Products */,
 			);
