@@ -7,20 +7,26 @@
 //
 
 import UIKit
+import AVFoundation
 
 class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var btnPlayStopAll: UIButton!
+    var filenames:[String] = ["audiowave","cafe","fan","fire","forrest","leaves","moon","rain","seaside","thunderstorm","train","water"]
+    var players:[AVAudioPlayer] = [];
+    
     
     override func viewWillAppear(animated: Bool) {
         
     }
-    
+    //thinh 040416
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView.backgroundColor=UIColor.clearColor();
         collectionView!.registerNib(UINib(nibName: "MuzikCell", bundle: nil), forCellWithReuseIdentifier: "MuzikCell")
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,25 +34,90 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         // Dispose of any resources that can be recreated.
     }
     
+    //thinh 040416
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1;
     }
     
+    //thinh 040416
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3;
+        return self.filenames.count;
     }
+    
+    //thinh 040416
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         //Define Cell for indexpath
         let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("MuzikCell", forIndexPath: indexPath) as! MuzikCell
-        cell.imgIcon.backgroundColor=UIColor.redColor();
+        
+        //Set Normal State
+        cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
+        
+        //Set Selected State
+        let bgSelected=UIImage.init(named: self.filenames[indexPath.row] + ".png")?.alpha(1)
+        cell.btnIcon.setBackgroundImage(bgSelected, forState: UIControlState.Selected)
+        
+        cell.btnIcon.tag=indexPath.row;
+        
+        //catch event button click
+        cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        var url = NSURL(fileURLWithPath: self.filenames[indexPath.row] + ".mp3")
+        do{
+            let player = try AVAudioPlayer.init(contentsOfURL:url)
+            players.insert(player, atIndex: indexPath.row)
+        }
+        catch{
+            print("Error");
+        }
+        
         return cell
         
     }
+    
+    //thinh 040416
     func collectionView(collectionView: UICollectionView,
                           layout collectionViewLayout: UICollectionViewLayout,
                                  sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        return CGSize.init(width: ((self.view.frame.width/2) - 50), height: 200)
+      
+        let constrain = CGFloat.init(((self.view.frame.width/3) - 50))
+        return CGSize.init(width:constrain, height: constrain+50)
+    }
+    
+    
+    //thinh 040416
+    func soundClicked(sender:UIButton){
+        //change state of button
+        sender.selected = !sender.selected
+        print("clicked \(sender.tag)")
+    }
+    
+    
+    //thinh 040416
+    @IBAction func btnPlayStopAllClicked(sender: AnyObject) {
+        
+
+//        print(players.count)
+        
+        
+        let count = self.filenames.count-1
+        if !self.btnPlayStopAll.selected {
+            
+            for index in 0...count{
+                print(index)
+                let cell = self.collectionView.cellForItemAtIndexPath(NSIndexPath.init(forItem: index, inSection: 0)) as! MuzikCell
+                cell.btnIcon.selected=true;
+            }
+
+        }
+        else{
+            for index in 0...count{
+                let cell = self.collectionView.cellForItemAtIndexPath(NSIndexPath.init(forItem: index, inSection: 0)) as! MuzikCell
+                cell.btnIcon.selected=false;
+            }
+        }
+        self.btnPlayStopAll.selected = !self.btnPlayStopAll.selected
+        
     }
     
 }

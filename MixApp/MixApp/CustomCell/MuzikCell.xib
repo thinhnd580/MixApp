@@ -14,28 +14,32 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="390" height="378"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cvY-Ch-Kg6" userLabel="icon">
-                        <rect key="frame" x="10" y="17" width="370" height="189"/>
-                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohb-ud-CV9">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="227"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="selected">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qkq-qj-lCl" userLabel="volume">
-                        <rect key="frame" x="27" y="216" width="336" height="31"/>
+                        <rect key="frame" x="-392" y="237" width="1174" height="31"/>
                     </slider>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="cvY-Ch-Kg6" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="9A3-KJ-wC7"/>
-                <constraint firstItem="cvY-Ch-Kg6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="17" id="BSJ-yN-K0F"/>
-                <constraint firstItem="cvY-Ch-Kg6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="J36-pc-W7J"/>
-                <constraint firstAttribute="trailing" secondItem="qkq-qj-lCl" secondAttribute="trailing" constant="29" id="Lel-CE-sRn"/>
-                <constraint firstItem="cvY-Ch-Kg6" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.5" id="UeY-AE-aGQ"/>
-                <constraint firstItem="qkq-qj-lCl" firstAttribute="top" secondItem="cvY-Ch-Kg6" secondAttribute="bottom" constant="10" id="cNE-3A-f3l"/>
-                <constraint firstItem="qkq-qj-lCl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="29" id="cPP-ms-nkh"/>
-                <constraint firstAttribute="trailing" secondItem="cvY-Ch-Kg6" secondAttribute="trailing" constant="10" id="gsY-2a-2aS"/>
+                <constraint firstItem="ohb-ud-CV9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BnI-lC-Ulk"/>
+                <constraint firstItem="ohb-ud-CV9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KTM-r4-RPX"/>
+                <constraint firstItem="ohb-ud-CV9" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.6" id="Myb-h7-YHk"/>
+                <constraint firstItem="qkq-qj-lCl" firstAttribute="top" secondItem="ohb-ud-CV9" secondAttribute="bottom" constant="10" id="Rc0-2h-pXO"/>
+                <constraint firstAttribute="trailing" secondItem="ohb-ud-CV9" secondAttribute="trailing" id="Vwb-qA-lFm"/>
+                <constraint firstItem="qkq-qj-lCl" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="3" id="XAG-1l-j5B"/>
+                <constraint firstItem="qkq-qj-lCl" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="bof-nB-AYH"/>
             </constraints>
             <size key="customSize" width="390" height="378"/>
             <connections>
-                <outlet property="imgIcon" destination="cvY-Ch-Kg6" id="SvH-8j-Wad"/>
+                <outlet property="btnIcon" destination="ohb-ud-CV9" id="OBW-by-kg7"/>
                 <outlet property="sliderVolume" destination="qkq-qj-lCl" id="TGT-aF-ZyK"/>
             </connections>
             <point key="canvasLocation" x="372" y="264"/>

@@ -10,12 +10,19 @@ import UIKit
 
 class MuzikCell: UICollectionViewCell {
 
-    @IBOutlet weak var imgIcon: UIImageView!
+    
+    
     @IBOutlet weak var sliderVolume: UISlider!
+    @IBOutlet weak var btnIcon: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.sliderVolume.transform=CGAffineTransformMakeScale(0.3, 0.3);
+        
     }
-
+    @IBAction func btnClicked(sender: AnyObject) {
+        
+    }
+    
 }
