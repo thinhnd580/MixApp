@@ -31,7 +31,8 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
             let player = try AVAudioPlayer(contentsOfURL:url)
             player.prepareToPlay()
 //            players.insert(player, atIndex: indexPath.row)
-            
+            player.volume=100;
+            player.stop()
             player.play()
         }
         catch{
@@ -74,17 +75,18 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         //catch event button click
         cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-//        let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( "thunderstorm" , ofType:  ".mp3")! )
-//        do{
-//            let player = try AVAudioPlayer(contentsOfURL:url)
-//            player.prepareToPlay()
-//            players.insert(player, atIndex: indexPath.row)
-//            
-//            player.play()
-//        }
-//        catch{
-//            print("Error");
-//        }
+        let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( "thunderstorm" , ofType:  ".mp3")! )
+        do{
+            let player = try AVAudioPlayer(contentsOfURL:url)
+            
+            players.insert(player, atIndex: indexPath.row)
+            player.prepareToPlay()
+            player.play()
+            player.stop()
+        }
+        catch{
+            print("Error");
+        }
         
         return cell
         
@@ -107,14 +109,14 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         print("clicked \(sender.tag)")
         
         //get player
-//        let player = players[sender.tag]
-//        
-//        if(sender.selected){
-//            player.stop()
-//        }
-//        else{
-//            player.play()
-//        }
+        let player = players[sender.tag]
+        
+        if(player.playing){
+            player.stop()
+        }
+        else{
+            player.play()
+        }
         
     }
     
