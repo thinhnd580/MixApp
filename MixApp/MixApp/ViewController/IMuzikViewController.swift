@@ -13,7 +13,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnPlayStopAll: UIButton!
-    var filenames:[String] = ["audiowave","cafe","fan","fire","forrest","leaves","moon","rain","seaside","thunderstorm","train","water"]
+    var filenames:[String] = ["audiowave","cafe","fan","fire","forrest","leaves","moon","waterstream","seaside","thunderstorm","train","water"]
     var players:[AVAudioPlayer] = [];
     
     
@@ -75,7 +75,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         //catch event button click
         cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( "thunderstorm" , ofType:  ".mp3")! )
+        let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( self.filenames[indexPath.row]  , ofType:  ".mp3")! )
         do{
             let player = try AVAudioPlayer(contentsOfURL:url)
             
@@ -134,14 +134,21 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
             for index in 0...count{
                 print(index)
                 let cell = self.collectionView.cellForItemAtIndexPath(NSIndexPath.init(forItem: index, inSection: 0)) as! MuzikCell
-                cell.btnIcon.selected=true;
+                if(!cell.btnIcon.selected){
+                    self.soundClicked(cell.btnIcon)
+                }
+                
+                
             }
 
         }
         else{
             for index in 0...count{
                 let cell = self.collectionView.cellForItemAtIndexPath(NSIndexPath.init(forItem: index, inSection: 0)) as! MuzikCell
-                cell.btnIcon.selected=false;
+//                cell.btnIcon.selected=false;
+                if(cell.btnIcon.selected){
+                    self.soundClicked(cell.btnIcon)
+                }
             }
         }
         self.btnPlayStopAll.selected = !self.btnPlayStopAll.selected
