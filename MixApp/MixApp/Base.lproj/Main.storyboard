@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Setting-->
+        <!--Setting View Controller-->
         <scene sceneID="fa4-kd-gxS">
             <objects>
                 <viewController id="wYQ-0h-DoP" customClass="SettingViewController" customModule="MixApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xCF-0C-c3v"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lwQ-6m-sx0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PS_BG.png" translatesAutoresizingMaskIntoConstraints="NO" id="H7J-fb-XJn">
@@ -78,7 +78,7 @@
                             <constraint firstItem="b4A-ly-fmV" firstAttribute="leading" secondItem="lwQ-6m-sx0" secondAttribute="leading" id="s9G-cb-CA1"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Setting" id="aE6-Qk-9ls"/>
+                    <tabBarItem key="tabBarItem" id="aE6-Qk-9ls"/>
                     <connections>
                         <outlet property="tableView" destination="b4A-ly-fmV" id="1XP-y3-H8W"/>
                     </connections>
@@ -163,7 +163,7 @@
             </objects>
             <point key="canvasLocation" x="1037" y="706"/>
         </scene>
-        <!--iMuzik-->
+        <!--Muzik View Controller-->
         <scene sceneID="yHY-Mk-fcD">
             <objects>
                 <viewController id="bGQ-91-WbF" customClass="IMuzikViewController" customModule="MixApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,7 +172,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BTC-tS-lZw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0xJ-6T-z0o">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PS_BG.png" translatesAutoresizingMaskIntoConstraints="NO" id="HR7-4t-ond">
@@ -278,7 +278,7 @@
                             <constraint firstItem="HR7-4t-ond" firstAttribute="leading" secondItem="0xJ-6T-z0o" secondAttribute="leading" id="uet-Qu-Ovo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="iMuzik" id="KEV-AY-wLC" userLabel="iMuzik"/>
+                    <tabBarItem key="tabBarItem" selectedImage="PS_BG.png" id="KEV-AY-wLC" userLabel="iMuzik"/>
                     <connections>
                         <outlet property="btnPlayStopAll" destination="Cpv-fq-tlf" id="nNa-Ah-rfP"/>
                         <outlet property="collectionView" destination="HpZ-oX-cUv" id="Dbc-TP-k31"/>
@@ -292,8 +292,9 @@
         <scene sceneID="Lno-BF-owj">
             <objects>
                 <tabBarController id="4yw-3f-hNJ" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Tds-0d-p7v">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Tds-0d-p7v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

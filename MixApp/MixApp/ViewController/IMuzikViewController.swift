@@ -15,8 +15,6 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     @IBOutlet weak var btnPlayStopAll: UIButton!
     var filenames:[String] = ["audiowave","cafe","fan","fire","forrest","leaves","moon","rain","seaside","thunderstorm","train","water","waterstream"]
     var players:[AVAudioPlayer] = []
-    var btnArray:[UIButton] = []
-    var sliderArray:[UISlider] = []
     
     override func viewWillAppear(animated: Bool) {
         
@@ -54,7 +52,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         //catch event slider editting
         cell.sliderVolume.tag=indexPath.row
         cell.sliderVolume.addTarget(self, action: #selector(IMuzikViewController.onSliderMoving(_:)), forControlEvents: UIControlEvents.TouchDragInside)
-        self.sliderArray.insert(cell.sliderVolume, atIndex: indexPath.row)
+        
         
         cell.btnIcon.tag=indexPath.row;
         cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -67,7 +65,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
             do{
                 let player = try AVAudioPlayer(contentsOfURL:url)
                     players.insert(player, atIndex: indexPath.row)
-                    //            player.numberOfLoops = -1
+//                    player.numberOfLoops = -1
                     player.prepareToPlay()
                     player.play()
                     player.stop()
@@ -105,6 +103,7 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         let constrain = CGFloat.init(((self.view.frame.width/3) - 50))
         return CGSize.init(width:constrain, height: constrain+50)
     }
+    
     
     
     //thinh 040416
