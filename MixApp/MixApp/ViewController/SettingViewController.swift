@@ -32,6 +32,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("SettingCell")!  as UITableViewCell;
         cell.textLabel?.text=category[indexPath.row];
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.backgroundColor=UIColor.clearColor()
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell;
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -42,6 +45,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let VC = segue.destinationViewController as! ViewController
         VC.index = (sender as! NSIndexPath).row
         
+    }
+    @IBAction func btnSoundClicked(sender: AnyObject) {
+        self.tabBarController?.selectedIndex = 0
     }
 
 }

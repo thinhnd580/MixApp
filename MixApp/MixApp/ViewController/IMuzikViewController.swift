@@ -17,11 +17,14 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
     var players:[AVAudioPlayer] = []
     
     override func viewWillAppear(animated: Bool) {
-        
+        tabBarController?.tabBar.hidden = true
+        super.viewWillAppear(animated)
     }
     //thinh 040416
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView.backgroundColor=UIColor.clearColor();
         collectionView!.registerNib(UINib(nibName: "MuzikCell", bundle: nil), forCellWithReuseIdentifier: "MuzikCell")
@@ -175,6 +178,9 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         //change volume
         let player = players[sender.tag]
         player.volume = sender.value
+    }
+    @IBAction func btnSettingClicked(sender: AnyObject) {
+        self.tabBarController?.selectedIndex = 1
     }
     
 
