@@ -29,6 +29,27 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         self.collectionView.backgroundColor=UIColor.clearColor();
         collectionView!.registerNib(UINib(nibName: "MuzikCell", bundle: nil), forCellWithReuseIdentifier: "MuzikCell")
         
+        for i in 0...(self.filenames.count-1) {
+            
+            //create player for cell
+            let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( self.filenames[i]  , ofType:  ".mp3")! )
+            do{
+                let player = try AVAudioPlayer(contentsOfURL:url)
+                players.insert(player, atIndex: i)
+                player.numberOfLoops = -1
+                player.prepareToPlay()
+                player.play()
+                player.stop()
+                
+                
+                
+            }
+            catch{
+                print("Error");
+            }
+
+        }
+        
         
     }
     
@@ -59,40 +80,14 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         
         cell.btnIcon.tag=indexPath.row;
         cell.btnIcon.addTarget(self, action: #selector(IMuzikViewController.soundClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
         
-        if(self.players.count<self.filenames.count){
-            //First time create cell
-            cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
-            //create player for cell
-            let url = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource( self.filenames[indexPath.row]  , ofType:  ".mp3")! )
-            do{
-                let player = try AVAudioPlayer(contentsOfURL:url)
-                    players.insert(player, atIndex: indexPath.row)
-//                    player.numberOfLoops = -1
-                    player.prepareToPlay()
-                    player.play()
-                    player.stop()
-                
-                
-                
-            }
-            catch{
-                print("Error");
-            }
+        //change state of button
+        if((self.players[indexPath.row] ).playing){
+            let bgSelected=UIImage.init(named: self.filenames[indexPath.row] + ".png")?.alpha(1)
+            cell.btnIcon.setBackgroundImage(bgSelected, forState: UIControlState.Normal)
         }
-        else{
-            //change state of button
-            if((self.players[indexPath.row] ).playing){
-                let bgSelected=UIImage.init(named: self.filenames[indexPath.row] + ".png")?.alpha(1)
-                cell.btnIcon.setBackgroundImage(bgSelected, forState: UIControlState.Normal)
-            }
-            else{
-                cell.btnIcon.setBackgroundImage(UIImage.init(named: self.filenames[indexPath.row] + ".png" )?.alpha(0.35), forState: UIControlState.Normal)
-                
-            }
-            
-
-        }
+        
         
         return cell
         
@@ -145,7 +140,6 @@ class IMuzikViewController: UIViewController,UICollectionViewDelegate,UICollecti
         if !self.btnPlayStopAll.selected {
             
             for index in 0...count{
-                print(index)
                 let player = self.players[index]
                 if(!player.playing){
                     player.play()
